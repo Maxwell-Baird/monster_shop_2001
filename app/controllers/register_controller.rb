@@ -8,7 +8,7 @@ class RegisterController < ApplicationController
     if User.exists?(email: user_params[:email])
       flash[:error] = "Email already in use. Try a different email."
       render :new
-    elsif @user.save
+    elsif @user.save && params[:confirm_pass] == params[:password]
       flash[:notice] = "Your account has been created."
       redirect_to "/profile"
     else
