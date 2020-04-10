@@ -108,13 +108,6 @@ RSpec.describe 'Cart show' do
       expect(current_path).to eql("/profile/orders")
       expect(page).to have_content('Order Succesfully Created') #flash
 
-      within('.orders-index') do
-        expect(page).to have_content(user.orders.first.id)
-        expect(page).to have_content(user.orders.first.name)
-        expect(page).to have_content(user.orders.first.address)
-        expect(page).to have_content(user.orders.first.status)
-      end
-
       visit '/cart'
       expect(page).to have_content('Cart is currently empty')
     end

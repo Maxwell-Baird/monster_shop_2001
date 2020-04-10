@@ -2,10 +2,13 @@
 
 <section class="orders-index">
   <% current_user.orders.each do |order| %>
-    <p><%= link_to "#{order.id}", "/profile/orders/#{order.id}" %></p>
-    <p><%= order.name %></p>
-    <p><%= order.address %></p>
-    <p><%= order.status %></p>
-    <p><%= order.created_at %></p>
-    <% end %>
+    <section id="order-<%= order.id %>">
+      <p><%= link_to "#{order.id}", "/profile/orders/#{order.id}" %></p>
+      <p><%= order.created_at %></p>
+      <p><%= order.updated_at %></p>
+      <p><%= order.status %></p>
+      <p><%= order.total_quantity %></p>
+      <p><%= order.grandtotal %></p>
+    </section>
+  <% end %>
 </section>
