@@ -19,7 +19,7 @@ RSpec.describe 'Site Navigation' do
       user = User.create(name: "David", address: "123 Test St", city: "Denver", state: "CO", zip: "80204", email: "123@example.com", password: "password", role: 1)
       allow_any_instance_of(ApplicationController).to receive(:current_user).and_return(user)
 
-      visit "/merchant/dashboard"
+      visit "/merchant"
 
       expect(page).to have_content("The page you were looking for doesn't exist.")
 

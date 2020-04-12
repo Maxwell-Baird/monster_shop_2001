@@ -31,7 +31,7 @@
           <%= link_to "Logout", "/logout" %>
         </section>
       <% elsif current_user.role == 2 %>
-        <%= link_to "Merchant Dashboard", "/merchant/dashboard" %>
+        <%= link_to "Merchant Dashboard", "/merchant" %>
         <%= link_to "Cart: #{cart.total_items}", "/cart" %>
         <%= link_to "Profile", "/profile" %>
         <section class="topnav-right">

@@ -22,7 +22,7 @@ describe "Log in" do
     click_on 'Login'
 
     expect(page).to have_content("You have successfully logged in.")
-    expect(current_path).to eq('/merchant/dashboard')
+    expect(current_path).to eq('/merchant')
   end
 
   it "can log in as an admin user" do
@@ -70,7 +70,7 @@ describe "Log in" do
 
     visit '/login'
     expect(page).to have_content("You're already logged in.")
-    expect(current_path).to eq('/merchant/dashboard')
+    expect(current_path).to eq('/merchant')
   end
 
   it "I will be redirected if I am logged in" do

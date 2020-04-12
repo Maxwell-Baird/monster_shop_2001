@@ -6,7 +6,7 @@ class SessionsController < ApplicationController
       redirect_to '/profile'
     elsif current_user.role == 2
       flash[:notice] = "You're already logged in."
-      redirect_to '/merchant/dashboard'
+      redirect_to '/merchant'
     elsif current_user.role == 3
       flash[:notice] = "You're already logged in."
       redirect_to '/admin'
@@ -23,7 +23,7 @@ class SessionsController < ApplicationController
       if user.role == 1
         redirect_to '/profile'
       elsif user.role == 2
-        redirect_to '/merchant/dashboard'
+        redirect_to '/merchant'
       elsif user.role == 3
         redirect_to '/admin'
       end
