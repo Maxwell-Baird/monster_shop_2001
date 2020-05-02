@@ -1,5 +1,5 @@
 class Cart
-  attr_reader :contents
+  attr_reader :contents, :discounts
 
   def initialize(contents)
     @contents = contents
@@ -23,12 +23,13 @@ class Cart
   end
 
   def subtotal(item)
-    item.price * @contents[item.id.to_s]
+    total = item.price * @contents[item.id.to_s]
+    total - (discount(item.id) * total)
   end
 
   def total
     @contents.sum do |item_id,quantity|
-      Item.find(item_id).price * quantity
+      Item.find(item_id).price * quantity - (discount(item_id) * Item.find(item_id).price * quantity)
     end
   end
 
@@ -46,5 +47,27 @@ class Cart
 
   def limit_reached?(item)
     @contents[item] == Item.find(item).inventory
+  end
+
+  def discount(item_id)
+    item = Item.find(item_id)
+    merchant = Merchant.find(item.merchant_id)
+    discounts = merchant.discounts.where('amount <= ?', @contents[item.id.to_s]).order(percent: :desc)
+    if discounts.first == nil
+      0
+    else
+      discounts.first.percent / 100.00
+    end
+  end
+
+  def check_discount(item_id)
+    item = Item.find(item_id)
+    merchant = Merchant.find(item.merchant_id)
+    discounts = merchant.discounts.where('amount <= ?', @contents[item.id.to_s]).order(percent: :desc)
+    if discounts.first != nil
+      discounts.first.percent
+    else
+      0
+    end
   end
 end

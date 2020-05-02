@@ -40,7 +40,11 @@
         <td><p><img src=<%= item_order.item.image %> /></p></td>
         <td><p><%= item_order.quantity%></p></td>
         <td><p><%= number_to_currency(item_order.price)%></p></td>
-        <td><p><%= number_to_currency(item_order.subtotal)%></p></td>
+        <td><p><%= number_to_currency(item_order.subtotal)%></p>
+          <% if item_order.discount > 0 %>
+          <p> A discount has been applied for <%= item_order.discount%>% </p>
+          <% end %>
+        </td>
         <td><p><%= item_order.status %></p></td>
       </section>
     </tr>

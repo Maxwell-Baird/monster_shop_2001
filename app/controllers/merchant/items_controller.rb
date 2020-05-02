@@ -39,18 +39,6 @@ class Merchant::ItemsController < Merchant::BaseController
     end
   end
 
-  def update_active
-    item = Item.find(params[:id])
-    if item.status == true
-      item.update(status: false)
-      flash[:success] = "#{item.name} is no longer for sale."
-    else
-      item.update(status: true)
-      flash[:success] = "#{item.name} is now for sale."
-    end
-      redirect_to "/merchant/items"
-  end
-
   def destroy
     item = Item.destroy(params[:id])
     flash[:success] = "#{item.name} has been removed from your inventory."

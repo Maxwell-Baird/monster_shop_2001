@@ -7,7 +7,9 @@
   <%= @merchant.state %>
   <%= @merchant.zip %><br><br>
   </section>
+  <%= link_to "Discounts", "/merchant/discounts" %>
 </center>
+<p></p>
 <section class='merchant-orders grid-container'>
   <% @merchant.orders.distinct.each do |order| %>
     <section id='order-<%= order.id %>' class="grid-item">

@@ -32,7 +32,7 @@ class SessionsController < ApplicationController
     end
   end
 
-  def logout
+  def show
     session.clear
     flash[:success] = "You're logged out."
     redirect_to '/'

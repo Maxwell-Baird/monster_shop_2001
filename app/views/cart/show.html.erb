@@ -31,15 +31,18 @@
       <td>
         <center>
           <p id="<%= item.id %>-quantity">
-            <%= link_to "-1", cart_update_path(item.id, quantity: "dec"), method: :patch %>
+            <%= link_to "-1", "/cart/#{item.id}/dec", method: :patch %>
             <%= quantity %>
-            <%= link_to "+1", cart_update_path(item.id, quantity: "inc"), method: :patch %>
+            <%= link_to "+1","/cart/#{item.id}/inc", method: :patch %>
           </p>
           <p><%= link_to "Remove", "/cart/#{item.id}",method: :delete %></p>
         </center>
         </td>
       <td>
         <p><%=number_to_currency(cart.subtotal(item))%></p>
+        <% if cart.check_discount(item.id) > 0 %>
+        <p> A discount has been applied for <%= cart.check_discount(item.id)%>% </p>
+        <% end %>
     </td>
     </tr>
   <% end %>
